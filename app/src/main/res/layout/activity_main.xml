@@ -1,0 +1,49 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Your original RelativeLayout -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+
+        <!-- Custom title inside Toolbar -->
+        <ImageView
+            android:id="@+id/menuimageicon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start"
+            android:background="@drawable/hamburgermodified"
+            android:text="Click" />
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:background="@drawable/redbox"
+            android:padding="8dp"
+            android:text="Birthday's app"
+            android:textColor="@android:color/white"
+            android:textSize="30dp" />
+
+        <ImageView
+            android:id="@+id/plusimageicon"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:src="@drawable/newplus"
+            android:text="Click" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <include
+        layout="@layout/itemrelativelayout"
+        android:id="@+id/relativeLayoutfirst"/>
+</LinearLayout>
