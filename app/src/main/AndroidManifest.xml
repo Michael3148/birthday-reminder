@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BirthdayReminder">
         <activity
-            android:name=".dialogue"
+            android:name=".clicked"
+            android:exported="false" />
+        <activity
+            android:name=".second"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Dialog"
             tools:ignore="Instantiatable" />

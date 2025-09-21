@@ -2,6 +2,7 @@ package com.example.birthdayreminder;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +71,10 @@ public class MainActivity extends AppCompatActivity {
         givenname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String bdname=name.getText().toString().trim();
+                Intent intent1 = new Intent(MainActivity.this, clicked.class);
+                intent1.putExtra("Getname", bdname);
+                startActivity(intent1);
             }
         });
     }
