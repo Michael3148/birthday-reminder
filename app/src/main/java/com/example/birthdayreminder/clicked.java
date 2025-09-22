@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 public class clicked extends AppCompatActivity {
     TextView birthdaysname,selecteddate,countdown;
-    Button selectdate,save,forgetdate;
+    Button selectdate,save;
     Calendar selectedCalendar;
     CountDownTimer countDownTimer;
     @Override
@@ -38,7 +38,6 @@ public class clicked extends AppCompatActivity {
         countdown=findViewById(R.id.textView9);
         selectdate=findViewById(R.id.button2);
         save=findViewById(R.id.button4);
-        forgetdate=findViewById(R.id.button3);
 
 
 
@@ -61,7 +60,7 @@ public class clicked extends AppCompatActivity {
                             selectedCalendar = Calendar.getInstance();
                             selectedCalendar.set(selectedYear, selectedMonth, selectedDay, 0, 0, 0);
 
-                            String date = selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear;
+                            String date = selectedDay + "(DD) /" + (selectedMonth + 1) + "(MM) /" + selectedYear + "(YY)";
                             selecteddate.setText(date);
 
                             startCountdown();
@@ -71,21 +70,6 @@ public class clicked extends AppCompatActivity {
 
                 datePickerDialog.show();
                 datePickerDialog.setCancelable(false);
-                if (selecteddate !=null && countdown !=null){
-                    selectdate.setEnabled(false);
-                }
-                else {
-                    selectdate.setEnabled(true);
-                }
-            }
-        });
-        forgetdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selecteddate.setText("");
-                countdown.setText("");
-                countDownTimer.cancel();
-                selectdate.setEnabled(true);
             }
         });
     }

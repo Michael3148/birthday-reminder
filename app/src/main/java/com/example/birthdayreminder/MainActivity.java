@@ -4,12 +4,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +26,10 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
     ImageView plusicon;
     ImageView menuicon;
-    EditText name;
-    Button save;
-    TextView givenname;
+    EditText name,newname;
+    Button save,newsave;
+    TextView givenname,newgivenname;
+    RelativeLayout newLayout;
     private Toast backToast;
     private long backPressedTime;
 
@@ -45,6 +49,17 @@ public class MainActivity extends AppCompatActivity {
         name = findViewById(R.id.editText);
         save = findViewById(R.id.addbutton);
         givenname = findViewById(R.id.resultText);
+
+        LinearLayout container = findViewById(R.id.container);
+        LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+        newLayout= (RelativeLayout) inflater.inflate(R.layout.itemrelativelayout, container, false);
+
+        /*newname=newLayout.findViewById(R.id.editText);
+        newsave=newLayout.findViewById(R.id.addbutton);
+        newgivenname=newLayout.findViewById(R.id.resultText);*/
+
+
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +90,34 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent1 = new Intent(MainActivity.this, clicked.class);
                 intent1.putExtra("Getname", bdname);
                 startActivity(intent1);
+            }
+        });
+        plusicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+                LinearLayout container = findViewById(R.id.container);
+                RelativeLayout newLayout = (RelativeLayout) inflater.inflate(R.layout.itemrelativelayout, container, false);
+
+                EditText newname=newLayout.findViewById(R.id.editText);
+                Button newsave = newLayout.findViewById(R.id.addbutton);
+                TextView newgivenname = newLayout.findViewById(R.id.resultText);
+
+                newsave.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String newinputname = newname.getText().toString().trim();
+                        if (!newinputname.isEmpty()) {
+                            newgivenname.setText(newinputname);
+                            newgivenname.setVisibility(View.VISIBLE);
+                            newname.setVisibility(View.GONE);
+                            newsave.setVisibility(View.GONE);
+                        } else if (newinputname.isEmpty()) {
+                            newname.setError("Enter a name");
+                        }
+                    }
+                });
+                container.addView(newLayout);
             }
         });
     }
