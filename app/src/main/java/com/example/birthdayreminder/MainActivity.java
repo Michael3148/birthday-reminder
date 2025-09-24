@@ -117,6 +117,17 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+                newgivenname.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String newbdname=newname.getText().toString().trim();
+                        Intent intent1 = new Intent(MainActivity.this, clicked.class);
+                        intent1.putExtra("Getname", newbdname);
+                        startActivity(intent1);
+                    }
+                });
+
                 container.addView(newLayout);
             }
         });
